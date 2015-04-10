@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+<head>
+	<title>Finger Decide: Choose your favorite</title>
+	<!--link rel="stylesheet" type="text/css3" href="styles/main.css"-->
+	<!-- Include meta tag to ensure proper rendering and touch zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Include jQuery Mobile stylesheets -->
+	<!--link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"-->
+	<link rel="stylesheet" href="jquery.mobile-1.4.5.min.css">
+	<!-- Include the jQuery library -->
+	<!--script src="http://code.jquery.com/jquery-1.11.2.min.js"></script-->
+	<script src="jquery-1.11.2.min.js"></script>
+	<!-- Include the jQuery Mobile library -->
+	<!--script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script-->
+	<script src="jquery.mobile-1.4.5.min.js"></script>
+	
+	<script src="scripts/globals.js"></script>
+	<script src="scripts/menuPage.js"></script>
+	<script src="scripts/orderPage.js"></script>
+	<script src="scripts/singlePage.js"></script>
+	<script src="scripts/functions.js"></script>
+	<script src="scripts/makingPage.js"></script>
+	<!--script>
+    	$(document).on("mobileinit", function() {
+        	$.mobile.hashListeningEnabled = false;
+        });
+    </script-->
+    <style>
+    @media all and (max-width: 30em) {
+		.my-breakpoint .ui-block-a, 
+		.my-breakpoint .ui-block-b, 
+		.my-breakpoint .ui-block-c,
+		.my-breakpoint .ui-block-d,
+		.my-breakpoint .ui-block-e { 
+			width: 100%; 
+			float: none; 
+		}
+	}
+
+	/*@media all and (min-width: 75em) {
+		.my-breakpoint.ui-grid-a .ui-block-a { width: 80%; }
+		.my-breakpoint.ui-grid-a .ui-block-b { width: 19%; }
+		.my-breakpoint.ui-grid-a .ui-block-a { clear: left; }
+	}*/
+
+	ul li a#indexFooter1 {
+		background-color: #ff00ff;
+	}
+
+	ul li a#indexFooter1:after {
+		background-color: #4da6ff;
+	}
+    </style>
+
+    <script>
+    var allDishID = [];
+	var allDishType = [];
+	var allDishName = [];
+	var allPrice = [];
+	var allDishComposition = [];
+    </script>
+
+</head>
+
+<body>
+
+<div data-role="page" id="indexPage">
+	<div data-role="header">
+		<h1>Finger Decide</h1>
+		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-left">Back</a>
+	</div>
+	<div data-role="main" class="ui-content">
+		<!--img src="images/main_1.png" alt="Just Try"-->
+		<a href="#menuPage"><div>Menu</div></a>
+		<a href=""><div>Order Seats</div></a>
+		<a href=""><div>Activities</div></a>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+      		<ul>
+        		<li><a id="indexFooter1" href="#menuPage" data-icon="bars">Menu</a></li>
+        		<li><a href="#orderPage" data-icon="check">Order</a></li>
+        		<li><a href="#" data-icon="comment">Activities</a></li>
+        		<li><a href="#" data-icon="gear">Settings</a></li>
+      		</ul>
+    	</div>
+	</div>
+</div>
+
+<div data-role="page" id="menuPage">
+	<div data-role="header">
+		<h1>Choose Your Food</h1>
+	</div>
+	<div data-role="main" class="ui-content">
+		<ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow' style="float:left; width:20%"></ul>
+		<ul id="showMenu" class='ui-listview ui-listview-inset ui-corner-all ui-shadow' style="float:right; width:80%"></ul>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+      		<ul>
+        		<li><a href="#" data-icon="bars" class="ui-btn-active ui-state-persist">Menu</a></li>
+        		<li><a href="#orderPage" data-icon="check">Order</a></li>
+        		<li><a href="#" data-icon="comment">Activities</a></li>
+        		<li><a href="#" data-icon="gear">Settings</a></li>
+      		</ul>
+    	</div>
+	</div>
+</div>
+
+<div data-role="page" id="orderPage">
+	<div data-role="header">
+		<h1>Check Your Ordered</h1>
+	</div>
+	<div data-role="main" class="ui-content">
+		<div id="orderedList" data-role="collapsible" data-collapsed="false">
+			<h1>You have ordered:</h1>
+			<ul id="showOrdered" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+		</div>
+		<div id="selectedList" data-role="collapsible" data-collapsed="false">
+			<h1>You have selected:</h1>
+			<ul id="showSelected" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+		</div>
+		<div id="cancelList" data-role="collapsible" data-collapsed="false">
+			<h1>You have abandoned:</h1>
+			<ul id="showCancel" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+		</div>
+		<a href="#" class="ui-btn" id="totalPrice"></a>
+		<br>
+		<form id="orderForm" action="includes/order.php" method="POST">
+			Choose your table number:
+			<select name="table" id="tableNum">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<br>
+			<input type="hidden" name="ResID" value="0001">
+			<input type="submit" value="order" id="orderButton">
+		</form>
+		<div id="orderSuccess" data-role="controlgroup" data-type="horizontal">
+			<a href='#indexPage'  class="ui-btn ui-corner-all">Check out</a>
+			<a href='#menuPage'   class="ui-btn ui-corner-all">Add some more</a>
+			<a href='#makingPage' class="ui-btn ui-corner-all">View the making dishes</a>
+		</div>
+		<div id="dialogOrder" data-role="popup" data-transition="fade" data-dismissible="false" data-history="false">
+        	Ordered Successfully
+    	</div>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+      		<ul>
+        		<li><a href="#menuPage" data-icon="bars">Menu</a></li>
+        		<li><a href="#" data-icon="check" class="ui-btn-active ui-state-persist">Order</a></li>
+        		<li><a href="#" data-icon="comment">Activities</a></li>
+        		<li><a href="#" data-icon="gear">Settings</a></li>
+      		</ul>
+    	</div>
+	</div>
+</div>
+
+<div data-role="page" id="singlePage">
+	<div data-role="header">
+		<h1>Show Dish Detail</h1>
+	</div>
+	<div data-role="main" class="ui-content">
+		<div id="dishInfo"></div>
+		<div id="dishStar"></div>
+		<div id="dishComment"></div>
+		<br>
+		<form id="commentForm" action="includes/updatecomment.php" method="POST">
+			
+			Select the score:
+			<select name="star">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<br>
+			
+			<input id="commentFormDish" type="hidden" name="dishid">
+			<!--div class="ui-field-contain"-->
+			<label for="dishCommentInput">Leave your comment:</label>
+			<textarea id="dishCommentInput" name="comment"></textarea>
+			<!--/div-->
+
+			<input id="commentSubmitButton" type="submit" value="submit">
+			
+		</form>
+		<div id="dialogComment" data-role="popup" data-transition="fade" data-dismissible="false">
+        	Submit Successful
+    	</div>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+      		<ul>
+        		<li><a href="#menuPage" data-icon="bars">Menu</a></li>
+        		<li><a href="#orderPage" data-icon="check">Order</a></li>
+        		<li><a href="#" data-icon="comment">Activities</a></li>
+        		<li><a href="#" data-icon="gear">Settings</a></li>
+      		</ul>
+    	</div>
+	</div>
+</div>
+
+<div data-role="page" id="makingPage">
+	<div data-role="header">
+		<h1>View dishes which are making</h1>
+	</div>
+	<div data-role="main" class="ui-content">
+		<ul id="showMaking" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+      		<ul>
+        		<li><a href="#menuPage" data-icon="bars">Menu</a></li>
+        		<li><a href="#orderPage" data-icon="check">Order</a></li>
+        		<li><a href="#" data-icon="comment">Activities</a></li>
+        		<li><a href="#" data-icon="gear">Settings</a></li>
+      		</ul>
+    	</div>
+	</div>
+</div>
+
+</body>
+</html>

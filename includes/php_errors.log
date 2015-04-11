@@ -131,9 +131,15 @@
 [02-Apr-2015 18:53:32 UTC] PHP Warning:  date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in C:\Apache24\htdocs\order_system\includes\order.php on line 41
 [02-Apr-2015 19:04:25 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\order_system\includes\readdishcomment.php on line 23
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> d02e007d286a4266ec937934aab3c7334e13b470
 [07-Apr-2015 10:23:25 UTC] PHP Warning:  date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in C:\Apache24\htdocs\order_system\includes\order.php on line 29
 [07-Apr-2015 10:23:25 UTC] PHP Warning:  date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in C:\Apache24\htdocs\order_system\includes\order.php on line 41
 [08-Apr-2015 14:02:35 UTC] PHP Warning:  date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in C:\Apache24\htdocs\order_system\includes\order.php on line 29
 [08-Apr-2015 14:02:35 UTC] PHP Warning:  date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in C:\Apache24\htdocs\order_system\includes\order.php on line 41
+<<<<<<< HEAD
+>>>>>>> d02e007d286a4266ec937934aab3c7334e13b470
+=======
 >>>>>>> d02e007d286a4266ec937934aab3c7334e13b470

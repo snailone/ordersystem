@@ -54,10 +54,6 @@ $(document).on('pageinit', "#singlePage", function () {
       		data: form.serialize()
     	}).done(function() {
       		// Optionally alert the user of success here...
-<<<<<<< HEAD
-=======
-      		time = getTime();
->>>>>>> d02e007d286a4266ec937934aab3c7334e13b470
       		$("#dishComment").append(listComment(curTime(), $("#dishCommentInput").val()));
       		$("#commentForm").trigger("reset");
       		$('#dialogComment').popup('open', {

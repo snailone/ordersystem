@@ -1,4 +1,6 @@
 $(document).on('pageinit', '#indexPage', function() {
+	$('#indexDish1').fadeIn(1000);
+	setTimeout(1000);
 	loopPictures(1);
 });
 

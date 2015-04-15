@@ -1,50 +1,33 @@
 $(document).on("pageinit", "#menuPage", function() {
-	$.getJSON("includes/readmenu.php", function(data){
-		var dishType = [];
-		var i;
-		$.each(data, function(i, field){
-			allDishType[i] = field.DishType;
-			allPrice[i] = field.Price;
-			allDishName[i] = field.DishName;
-			allDishID[i] = field.DishID;
-			allDishComposition[i] = field.DishComposition;
-        });
-        // here the logic is not right
-        i = 0;
-        prevalue = null;
-        $.each(allDishType, function(key, value) {
-        	if (key == 0 || prevalue != value) {
-        		dishType[i] = value;
-        		i = i + 1;
-        	}
-        	prevalue = value;
-        });
-        $.each(dishType, function(key, value) {
-        	$("#showType").append("<li><a class='ui-btn' id='dishType" + key + "'>" + value + "</a></li>");
-        	$("#dishType" + key).click(function() {
-        		$("#showMenu").text("");
-        		var i = 0;
-        		$.each(allDishType, function(key1, value1) {
-        			if (value1 == value) {
-        				if (i%2 == 0) {
-        					addMenuDish(allDishID[key1], allDishName[key1], allPrice[key1], "left");
-        				} else {
-        					addMenuDish(allDishID[key1], allDishName[key1], allPrice[key1], "right");
-        				}
-        				i = i + 1;
+	$.each(dishType, function(key, value) {
+    	$("#showType").append("<li><a class='ui-btn' id='dishType" + key + "'>" + value + "</a></li>");
+        $("#dishType" + key).click(function() {
+        	$("#showMenu").text("");
+        	var count = 0;
+        	$.each(dishInfo, function(i, eachDish) {
+        		if (eachDish.type == value) {
+        			$("#showMenu").append(eachDish.element());
+        			if (count%2 == 0) {
+        				$("#dishBlock" + eachDish.id).addClass("ui-block-a");
+        				//addMenuDish(allDishID[key1], allDishName[key1], allPrice[key1], "left");
+        			} else {
+        				$("#dishBlock" + eachDish.id).addClass("ui-block-b");
+        				//addMenuDish(allDishID[key1], allDishName[key1], allPrice[key1], "right");
         			}
-        		});
+        			$("#dish" + eachDish.id).click(function() {
+						storeObject.DishID = id;
+					});
+        			count++;
+        		}
         	});
         });
-	});
+    });
 });
 
 function addMenuDish(id, name, price, position) {
 	$('#showMenu').append(listMenu(id, name, price, position));
 	dishState(id);
-	$("#dish" + id).click(function() {
-		storeObject.DishID = id;
-	});
+
 	$("#dishPlus" + id).click(function() {
 		plusMinusDish(id, "plus", "yes", "no");
 	});

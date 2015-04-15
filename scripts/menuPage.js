@@ -1,6 +1,4 @@
 $(document).on("pageinit", "#menuPage", function() {
-	$("#showMenu").text("");
-	$("#showType").text("");
 	$.getJSON("includes/readmenu.php", function(data){
 		var dishType = [];
 		var i;
@@ -9,8 +7,9 @@ $(document).on("pageinit", "#menuPage", function() {
 			allPrice[i] = field.Price;
 			allDishName[i] = field.DishName;
 			allDishID[i] = field.DishID;
-			allDishComposition = field.DishComposition;
+			allDishComposition[i] = field.DishComposition;
         });
+        // here the logic is not right
         i = 0;
         prevalue = null;
         $.each(allDishType, function(key, value) {
@@ -28,7 +27,6 @@ $(document).on("pageinit", "#menuPage", function() {
         		$.each(allDishType, function(key1, value1) {
         			if (value1 == value) {
         				if (i%2 == 0) {
-        					$('#showMenu').append("<div class='ui-grid-a'></div>");
         					addMenuDish(allDishID[key1], allDishName[key1], allPrice[key1], "left");
         				} else {
         					addMenuDish(allDishID[key1], allDishName[key1], allPrice[key1], "right");
@@ -41,54 +39,8 @@ $(document).on("pageinit", "#menuPage", function() {
 	});
 });
 
-/*$(document).on("pageinit", "#menuPage", function() {
-	$.getJSON("includes/readmenu.php", function(data){
-		$.each(data, function(i, field){
-			allDishType[i] = field.DishType;
-			allDishName[i] = field.DishName;
-			allPrice[i] = field.Price;
-
-			listElement[i] = listMenu(field.DishID, field.DishName, field.Price);
-			//$("#showMenu").append(listMenu(field.DishID, field.DishName, field.Price));
-			$("#showMenu").append(listElement[i]);
-			dishState(field.DishID);
-			$("#dish" + field.DishID).click(function() {
-				storeObject.DishID = field.DishID;
-			});
-			$("#dishPlus" + field.DishID).click(function() {
-				plusMinusDish(field.DishID, "plus", "yes", "no");
-			});
-			$("#dishMinus" + field.DishID).click(function() {
-				plusMinusDish(field.DishID, "minus", "yes", "no");
-			});
-        });
-        i = 0;
-        prevalue = null;
-        $.each(allDishType, function(key, value) {
-        	$("#showMenu").text("");
-        	$("#showMenu").append(listElement[i]);
-        	if (key == 0 || prevalue != value) {
-        		dishType[i] = value;
-        		alert(i);
-        		$("#showType").append("<li><a class='ui-btn' id='dishType" + i + "'>" + value + "</a></li>");
-        		$("#dishType" + i).click(function() {
-        			$("#showMenu").text("");
-        			alert(i);
-        			$("#showMenu").append(listElement[i]);
-        			//$.each(allDishType, function(key1, value1) {
-        			//	if (value == dishType[i]) {
-        			//		$("#showMenu").append(listElement[key]);
-        			//	}
-        			//});
-        		});
-        		i = i + 1;
-        	}
-        	prevalue = value;
-        });
-});*/
-
 function addMenuDish(id, name, price, position) {
-	$('#showMenu').children().last().append(listMenu(id, name, price, position));
+	$('#showMenu').append(listMenu(id, name, price, position));
 	dishState(id);
 	$("#dish" + id).click(function() {
 		storeObject.DishID = id;

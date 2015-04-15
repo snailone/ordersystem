@@ -1,22 +1,13 @@
 $(document).on('pageinit', '#indexPage', function() {
-	$('#indexDish2').hide();
-	$('#indexDish3').hide();
-	loopPictures(0);
+	loopPictures(1);
 });
 
 function loopPictures(i) {
 	setTimeout( function() {
-		changePictures(i);
-		i = i==2 ? 0 : i+1;
+		$('#indexDish' + i).fadeOut(1000).promise().done(function() {
+			i = i==3 ? 1 : i+1;
+			$('#indexDish' + i).fadeIn(1000);
+		});
 		loopPictures(i);
 	}, 2000);
-}
-
-function changePictures(i) {
-	for (var count=1; count<4; count++) {
-		$('#indexDish' + count).hide();
-		if (count == i+1) {
-			$('#indexDish' + count).fadeIn();
-		}
-	}
 }

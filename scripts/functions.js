@@ -69,7 +69,7 @@ function dishInfoCollect (id, name, type, price, composition) {
         }
         return this.num;
     };
-    this.element = function() {
+    this.getMenu = function() {
         var list = "";
         list = "<div id='dishBlock" + this.id + "'>"
              +   "<a id='dish" + this.id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
@@ -82,6 +82,26 @@ function dishInfoCollect (id, name, type, price, composition) {
              +     "<a id='dishPlus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
              +   "</div>"
              + "</div>";
+        return list;
+    };
+    this.getSelected = function() {
+        var list;
+        list = "<li class='ui-li-has-alt' id='selectedBlock" + this.id + "'>"
+            +   "<div class='ui-grid-a my-breakpoint'>"
+            +     "<div class='ui-block-a'>"
+            +       "<a id='selected" + this.id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
+            +         "<h2>"+ this.name + "</h2>"
+            +         "<p>Price: " + this.price + " <span style='color:red' id='selectedNum" + this.id + "'></span></p>"
+            +       "</a>"
+            +     "</div>"
+            +     "<div class='ui-block-b' >"
+            +       "<div style='float:right;'>"
+            +         "<a id='selectedMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"
+            +         "<a id='selectedPlus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
+            +       "</div>"
+            +     "</div>"
+            +   "</div>"
+            + "</li>";
         return list;
     };
     this.position = function(pos) {

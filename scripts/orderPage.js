@@ -3,7 +3,7 @@ $(document).on("pagebeforeshow", "#orderPage", function() {
 	//setCookie("ordered", "", -1);
 	//setCookie("orderNum", "", -1);
 	var totalPrice = 0;
-	$("#showSelected").text("");
+//	$("#showSelected").text("");
 	$("#showCancel").text("");
 	$("#showOrdered").text("");
 	if(getCookie("ordered") == "yes") {
@@ -26,7 +26,7 @@ $(document).on("pagebeforeshow", "#orderPage", function() {
 				totalPrice = + totalPrice + field.Price * parseInt(field.DishNum);
 			});
 			totalPrice = totalPrice.toFixed(2);
-			$("#totalPrice").text("Total Price: " + totalPrice);
+			//$("#totalPrice").text("Total Price: " + totalPrice);
 		});
 	} else {
 		$("#orderForm").show();
@@ -34,6 +34,7 @@ $(document).on("pagebeforeshow", "#orderPage", function() {
 		$("#orderedList").hide();
 	}
 
+/*
 	$.getJSON("includes/readselected.php", function(data){
 		$.each(data, function(i, field){
 			totalPrice = + totalPrice + field.Price * parseInt(field.DishNum);
@@ -62,6 +63,7 @@ $(document).on("pagebeforeshow", "#orderPage", function() {
 		totalPrice = totalPrice.toFixed(2);
 		$("#totalPrice").text("Total Price: " + totalPrice);
 	});
+*/
 });
 
 $(document).on("pageinit", "#orderPage", function() {

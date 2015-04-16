@@ -1,8 +1,22 @@
-$(document).on("pageinit", "#menuPage", function() {
-	$.each(dishType, function(key, value) {
-    	$("#showType").append("<li><a class='ui-btn' id='dishType" + key + "'>" + value + "</a></li>");
-        $("#dishType" + key).click(function() {
+$(document).on("pagebeforeshow", "#menuPage", function() {
+	/*$.each(dishType, function(type, dishes) {
+    	$("#showType").append("<li><a class='ui-btn' id='dishType" + type + "'>" + type + "</a></li>");
+        $("#dishType" + type).click(function() {
         	$("#showMenu").text("");
+        	$.each(dishes, function(i, num) {
+        		$("#showMenu").append(dishInfo[num].element());
+        		if (i%2 == 0) {
+        			$("#dishBlock" + dishInfo[num].id).addClass("ui-block-a");
+        			//addMenuDish(allDishID[key1], allDishName[key1], allPrice[key1], "left");
+        		} else {
+        			$("#dishBlock" + dishInfo[num].id).addClass("ui-block-b");
+        			//addMenuDish(allDishID[key1], allDishName[key1], allPrice[key1], "right");
+        		}
+        		$("#dish" + dishInfo[num].id).click(function() {
+					storeObject.DishID = dishInfo[num].id;
+				});
+        	});
+        	/*
         	var count = 0;
         	$.each(dishInfo, function(i, eachDish) {
         		if (eachDish.type == value) {
@@ -21,7 +35,7 @@ $(document).on("pageinit", "#menuPage", function() {
         		}
         	});
         });
-    });
+    });*/
 });
 
 function addMenuDish(id, name, price, position) {
@@ -34,26 +48,6 @@ function addMenuDish(id, name, price, position) {
 	$("#dishMinus" + id).click(function() {
 		plusMinusDish(id, "minus", "yes", "no");
 	});
-}
-
-function listMenu(id, name, price, position) {
-	var list;
-	if (position == "left") {
-		list = "<div class='ui-block-a' id='dishBlock" + id + "'>";
-	} else {
-		list = "<div class='ui-block-b' id='dishBlock" + id + "'>";
-	}
-	list +=    "<a id='dish" + id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
-			 +       "<img src='images/menu/dish"+id+".jpg' alt='dish' style='max-width:100%'>"
-			 +       "<h2>"+ name + "</h2>"
-			 +       "<p>Price: &pound;" + price + " <span style='color:red' id='dishNum" + id + "'></span></p>"
-			 +     "</a>"
-			 +     "<div style='text-align:right'>"
-			 +       "<a id='dishMinus" + id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"
-			 +       "<a id='dishPlus" + id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
-			 +     "</div>"
-			 +   "</div>";
-	return list;
 }
 
 function dishState(id) {

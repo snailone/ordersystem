@@ -58,12 +58,15 @@ function dishInfoCollect (id, name, type, price, composition) {
     this.getPrice = function() {
         return this.price;
     };
-    this.increaceNum = function() {
-        this.num++;
+    this.plusNum = function() {
+        this.num = this.num + 1;
         return this.num;
     };
-    this.decreaceNum = function() {
-        this.num--;
+    this.minusNum = function() {
+        this.num = this.num - 1;
+        if (this.num<=0) {
+            this.num = 0;
+        }
         return this.num;
     };
     this.element = function() {
@@ -80,5 +83,12 @@ function dishInfoCollect (id, name, type, price, composition) {
              +   "</div>"
              + "</div>";
         return list;
+    };
+    this.position = function(pos) {
+        if (pos == "left") {
+            return $('#dishBlock' + this.id).removeClass("ui-block-b").addClass("ui-block-a");
+        } else if (pos == "right") {
+            return $('#dishBlock' + this.id).removeClass("ui-block-a").addClass("ui-block-b");
+        }
     };
 }).call(dishInfoCollect.prototype);

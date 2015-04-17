@@ -4,7 +4,7 @@ $(document).on("pagebeforeshow", "#orderPage", function() {
 	//setCookie("orderNum", "", -1);
 	var totalPrice = 0;
 //	$("#showSelected").text("");
-	$("#showCancel").text("");
+//	$("#showCancel").text("");
 	$("#showOrdered").text("");
 	if(getCookie("ordered") == "yes") {
 		$("#orderForm").hide();

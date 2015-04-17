@@ -28,3 +28,18 @@
 [16-Apr-2015 11:07:54 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in C:\Apache24\htdocs\ordersystem\includes\readdishstar.php on line 7
 [16-Apr-2015 11:07:54 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\ordersystem\includes\readdish.php on line 24
 [16-Apr-2015 11:07:54 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\ordersystem\includes\readdishcomment.php on line 23
+[17-Apr-2015 13:11:16 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in C:\Apache24\htdocs\ordersystem\includes\readdishstar.php on line 7
+[17-Apr-2015 13:11:16 UTC] PHP Notice:  Trying to get property of non-object in C:\Apache24\htdocs\ordersystem\includes\readdishcomment.php on line 8
+[17-Apr-2015 13:11:16 UTC] PHP Notice:  Trying to get property of non-object in C:\Apache24\htdocs\ordersystem\includes\readdish.php on line 7
+[17-Apr-2015 13:11:16 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\ordersystem\includes\readdishcomment.php on line 23
+[17-Apr-2015 13:11:16 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\ordersystem\includes\readdish.php on line 24
+[17-Apr-2015 13:12:25 UTC] PHP Notice:  Trying to get property of non-object in C:\Apache24\htdocs\ordersystem\includes\readdish.php on line 7
+[17-Apr-2015 13:12:25 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\ordersystem\includes\readdish.php on line 24
+[17-Apr-2015 13:12:25 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in C:\Apache24\htdocs\ordersystem\includes\readdishstar.php on line 7
+[17-Apr-2015 13:12:25 UTC] PHP Notice:  Trying to get property of non-object in C:\Apache24\htdocs\ordersystem\includes\readdishcomment.php on line 8
+[17-Apr-2015 13:12:25 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\ordersystem\includes\readdishcomment.php on line 23
+[17-Apr-2015 13:12:54 UTC] PHP Notice:  Trying to get property of non-object in C:\Apache24\htdocs\ordersystem\includes\readdish.php on line 7
+[17-Apr-2015 13:12:54 UTC] PHP Fatal error:  Call to a member function fetch_assoc() on boolean in C:\Apache24\htdocs\ordersystem\includes\readdishstar.php on line 7
+[17-Apr-2015 13:12:54 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\ordersystem\includes\readdish.php on line 24
+[17-Apr-2015 13:12:54 UTC] PHP Notice:  Trying to get property of non-object in C:\Apache24\htdocs\ordersystem\includes\readdishcomment.php on line 8
+[17-Apr-2015 13:12:54 UTC] PHP Notice:  Undefined variable: outp in C:\Apache24\htdocs\ordersystem\includes\readdishcomment.php on line 23

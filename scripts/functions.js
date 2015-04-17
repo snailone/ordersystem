@@ -69,39 +69,55 @@ function dishInfoCollect (id, name, type, price, composition) {
         }
         return this.num;
     };
-    this.getMenu = function() {
+    this.getElement = function(mode) {
         var list = "";
-        list = "<div id='dishBlock" + this.id + "'>"
-             +   "<a id='dish" + this.id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
-             +     "<img src='images/menu/dish"+this.id+".jpg' alt='dish' style='max-width:100%'>"
-             +     "<h2>"+ this.name + "</h2>"
-             +     "<p>Price: &pound;" + this.price + " <span style='color:red' id='dishNum" + this.id + "'></span></p>"
-             +   "</a>"
-             +   "<div style='text-align:right'>"
-             +     "<a id='dishMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"
-             +     "<a id='dishPlus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
-             +   "</div>"
-             + "</div>";
-        return list;
-    };
-    this.getSelected = function() {
-        var list;
-        list = "<li class='ui-li-has-alt' id='selectedBlock" + this.id + "'>"
-            +   "<div class='ui-grid-a my-breakpoint'>"
-            +     "<div class='ui-block-a'>"
-            +       "<a id='selected" + this.id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
-            +         "<h2>"+ this.name + "</h2>"
-            +         "<p>Price: " + this.price + " <span style='color:red' id='selectedNum" + this.id + "'></span></p>"
-            +       "</a>"
-            +     "</div>"
-            +     "<div class='ui-block-b' >"
-            +       "<div style='float:right;'>"
-            +         "<a id='selectedMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"
-            +         "<a id='selectedPlus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
-            +       "</div>"
-            +     "</div>"
-            +   "</div>"
-            + "</li>";
+        if (mode == "menu") {
+            list = "<div id='dishBlock" + this.id + "'>"
+                +   "<a id='dish" + this.id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
+                +     "<img src='images/menu/dish"+this.id+".jpg' alt='dish' style='max-width:100%'>"
+                +     "<h2>"+ this.name + "</h2>"
+                +     "<p>Price: &pound;" + this.price + " <span style='color:red' id='dishNum" + this.id + "'></span></p>"
+                +   "</a>"
+                +   "<div style='text-align:right'>"
+                +     "<a id='dishMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"
+                +     "<a id='dishPlus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
+                +   "</div>"
+                + "</div>";
+        } else if (mode == "select") {
+            list = "<li class='ui-li-has-alt' id='selectedBlock" + this.id + "'>"
+                +   "<div class='ui-grid-a my-breakpoint'>"
+                +     "<div class='ui-block-a'>"
+                +       "<a id='selected" + this.id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
+                +         "<h2>"+ this.name + "</h2>"
+                +         "<p>Price: " + this.price + " <span style='color:red' id='selectedNum" + this.id + "'></span></p>"
+                +       "</a>"
+                +     "</div>"
+                +     "<div class='ui-block-b' >"
+                +       "<div style='float:right;'>"
+                +         "<a id='selectedMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"
+                +         "<a id='selectedPlus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
+                +       "</div>"
+                +     "</div>"
+                +   "</div>"
+                + "</li>";
+        } else if (mode == "cancel") {
+            list = "<li class='ui-li-has-alt' id='cancelBlock" + this.id + "'>"
+                +   "<div class='ui-grid-a my-breakpoint'>"
+                +     "<div class='ui-block-a'>"
+                +       "<a id='cancel" + this.id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
+                +         "<h2>"+ this.name + "</h2>"
+                +         "<p>Price: " + this.price + " <span style='color:red' id='selectedNum" + this.id + "'></span></p>"
+                +       "</a>"
+                +     "</div>"
+                +     "<div class='ui-block-b' >"
+                +       "<div style='float:right;'>"
+                +         "<a id='cancelMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"
+                +         "<a id='cancelPlus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
+                +       "</div>"
+                +     "</div>"
+                +   "</div>"
+                + "</li>";
+        }
         return list;
     };
     this.position = function(pos) {

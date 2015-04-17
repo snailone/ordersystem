@@ -97,7 +97,7 @@ $(document).on("pageinit", "#orderPage", function() {
 	});
 });
 
-function listSelected(id, name, composition, price) {
+/*function listSelected(id, name, composition, price) {
 	var list = "<li class='ui-li-has-alt' id='selectedBlock" + id + "'>"
 		+   "<div class='ui-grid-a my-breakpoint'>"
 		+     "<div class='ui-block-a'>"
@@ -115,7 +115,7 @@ function listSelected(id, name, composition, price) {
 		+   "</div>"
 		+ "</li>";
 	return list;
-}
+}*/
 
 function listOrdered(id, name, composition, price) {
 	var list = "<li id='orderedBlock" + id + "'>"
@@ -127,7 +127,7 @@ function listOrdered(id, name, composition, price) {
 	return list;
 }
 
-function plusMinusSelected(id, act, remove, del) {
+/*function plusMinusSelected(id, act, remove, del) {
 	$.post("includes/plusminusdish.php",
 	{
 		DishID: id,
@@ -150,4 +150,4 @@ function plusMinusSelected(id, act, remove, del) {
 			$("#selectedNum" + id).show();
 		}
 	});
-}
+}*/

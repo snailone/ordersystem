@@ -38,7 +38,7 @@ $(document).on("pagebeforeshow", "#menuPage", function() {
     });*/
 });
 
-function addMenuDish(id, name, price, position) {
+/*function addMenuDish(id, name, price, position) {
 	$('#showMenu').append(listMenu(id, name, price, position));
 	dishState(id);
 
@@ -86,4 +86,4 @@ function plusMinusDish(id, act, remove, del) {
 			$("#dishMinus" + id).show();
 		}
 	});
-}
+}*/

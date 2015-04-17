@@ -1,6 +1,13 @@
 <?php
 
-$selected = json_decode($_POST["Dishes"], true);
+if ( session_id()=="" ) {
+	session_start();
+}
+if (gettype($_SESSION["selected"])!="array") {
+	settype($_SESSION["selected"], "array");
+}
+
+$selected = $_SESSION["selected"];
 $tablenum = $_POST["table"];
 
 include_once "DBConnect.php";

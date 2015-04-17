@@ -3,6 +3,7 @@ var storeObject = {
 	totalPrice: 0
 };
 
-var dishInfo = [];
+var dishInfo = {};
 var dishType = {};
 var selectedDishes = {};
+var orderedDishes = {};

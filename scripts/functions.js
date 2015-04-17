@@ -58,6 +58,23 @@ function dishInfoCollect (id, name, type, price, composition) {
     this.getPrice = function() {
         return this.price;
     };
+    // mode = "plus", "minus", "zero"
+    this.changeNum = function(mode) {
+        if (mode = "plus") {
+            this.num++;
+        } else if (mode = "minus") {
+            this.num--;
+            if (this.num<=0) {
+                this.num = 0;
+            }
+        } else if (mode = "zero") {
+            this.num = 0;
+        } else {
+            alert("wrong!");
+            return "wrong!!";
+        }
+        return this.num;
+    };
     this.plusNum = function() {
         this.num = this.num + 1;
         return this.num;
@@ -111,7 +128,7 @@ function dishInfoCollect (id, name, type, price, composition) {
                 +     "</div>"
                 +     "<div class='ui-block-b' >"
                 +       "<div style='float:right;'>"
-                +         "<a id='cancelMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"
+                +         "<a id='cancelMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-delete ui-corner-all'>Minus</a>"
                 +         "<a id='cancelPlus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-plus ui-corner-all'>Plus</a>"
                 +       "</div>"
                 +     "</div>"

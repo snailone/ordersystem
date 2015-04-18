@@ -33,7 +33,7 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
 				}
 				selectedDishes[id] = dishInfo[id].num;
 
-				$("#dishNum" + id).html("&times; " + dishInfo[id].num);
+				$("#dishNum" + id).html("&times; &#10084; &#9825; &hearts; &#x2764; " + dishInfo[id].num);
 				$("#selectedNum" + id).html("&times; " + dishInfo[id].num);
 
 				storeObject.totalPrice = + storeObject.totalPrice + parseFloat(dishInfo[id].price);
@@ -132,6 +132,8 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
 					
 					$("#cancelBlock" + id).hide();
 				}
+				selectedDishes[id] = dishInfo[id].num;
+				
 				$("#dishNum" + id).html("&times; " + dishInfo[id].num);
 				$("#selectedNum" + id).html("&times; " + dishInfo[id].num);
 

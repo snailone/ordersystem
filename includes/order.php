@@ -50,6 +50,3 @@ foreach ($selected as $key => $value) {
 }
 
 echo($ordernum);
-
-session_unset();
-session_destroy();

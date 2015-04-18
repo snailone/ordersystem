@@ -1,9 +1,16 @@
 $(document).on("pagebeforeshow", "#singlePage", function () {
-	$("#commentFormDish").attr("value", storeObject.DishID);
+	var id = storeObject.DishID;
+	$("#singleDishImg").attr("src", "images/menu/dish" + id + ".jpg");
+	$("#singleDishImg").attr("alt", "dish" + id);
+	$("#commentFormDish").attr("value", id);
 	$("#dishInfo").text("");
-	$("#dishStar").text("");
+	$("#dishInfo").append("<p>Name: "        + dishInfo[id].name        + "</p>");
+    $("#dishInfo").append("<p>Type: "        + dishInfo[id].type        + "</p>");
+    $("#dishInfo").append("<p>Composition: " + dishInfo[id].composition + "</p>");
+    $("#dishInfo").append("<p>Price: "       + dishInfo[id].price       + "</p>");
+	//$("#dishStar").text("");
 	$("#dishComment").text("");
-	$.post("includes/readdish.php",
+	/*$.post("includes/readdish.php",
 	{
 		DishID: storeObject.DishID
 	},
@@ -14,20 +21,21 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
         	$("#dishInfo").append("<p>Composition: " + field.DishComposition + "</p>");
         	$("#dishInfo").append("<p>Price: "       + field.Price           + "</p>");
         });
-	});
+	});*/
 	$.post("includes/readdishstar.php",
 	{
 		DishID: storeObject.DishID
 	},
 	function(data) {
-		$("#dishStar").append("<p>Star: " + data + "</p>");
+		//$("#dishStar").append("<p>Star: " + data + "</p>");
+		$("#dishStar .star-front").attr("style", "width:" + parseInt(12*parseFloat(data)) + "px");
 	});
 	$.post("includes/readdishcomment.php",
 	{
 		DishID: storeObject.DishID
 	},
 	function(data) {
-		$.each(JSON.parse(data), function(i, field){	
+		$.each(JSON.parse(data), function(i, field){
         	//$("#dishComment").append("<p>" + field.Time    + "</p>");
         	//$("#dishComment").append("<p>" + field.Comment + "</p>");
         	$("#dishComment").append(listComment(field.Time, field.Comment));

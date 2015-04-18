@@ -58,6 +58,23 @@
 	ul li a#indexFooter1:after {
 		background-color: #4da6ff;
 	}
+
+	span.star-background, span.star-background span.star-front {
+		display: inline-block;
+		height: 12px;
+		line-height: 12px;
+		background-image: url("images/star_front.png");
+		background-repeat: repeat-x;
+		overflow: hidden;
+		vertical-align: top;
+	}
+
+	span.star-background {
+		width: 60px;
+		background-image: url("images/star_background.png");
+		background-repeat: repeat-x;
+	}
+
     </style>
 
     <script>
@@ -75,10 +92,9 @@
 <div data-role="page" id="indexPage">
 	<div data-role="header">
 		<h1>Finger Decide</h1>
-		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-left">Back</a>
+		<img src="images/main_2.jpg" alt="Just Try" style="max-width:100%">
 	</div>
 	<div data-role="main" class="ui-content">
-		<img src="images/main_2.jpg" alt="Just Try" style="max-width:100%">
 		<p>Chef Recommend</p>
 		<div style="display:inline-block">
 			<img id="indexDish1" src="images/menu/dish1.jpg" style="max-width:100%;display:none" alt="dish1" data-role="none">
@@ -101,6 +117,8 @@
 <div data-role="page" id="menuPage">
 	<div data-role="header">
 		<h1>Choose Your Food</h1>
+		<a href="#indexPage" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-notext">Home</a>
+		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-notext">Back</a>
 	</div>
 	<div data-role="main" class="ui-content">
 		<ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow' style="float:left; width:20%"></ul>
@@ -121,6 +139,8 @@
 <div data-role="page" id="orderPage">
 	<div data-role="header">
 		<h1>Check Your Ordered</h1>
+		<a href="#indexPage" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-notext">Home</a>
+		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-notext">Back</a>
 	</div>
 	<div data-role="main" class="ui-content">
 		<div id="orderedList" data-role="collapsible" data-collapsed="false">
@@ -175,10 +195,18 @@
 <div data-role="page" id="singlePage">
 	<div data-role="header">
 		<h1>Show Dish Detail</h1>
+		<a href="#indexPage" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-notext">Home</a>
+		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-notext">Back</a>
+		<img id="singleDishImg" style="max-width:100%;">
 	</div>
 	<div data-role="main" class="ui-content">
 		<div id="dishInfo"></div>
-		<div id="dishStar"></div>
+		<div id="dishStar">
+			Star: 
+			<span class="star-background">
+				<span class="star-front" style="width:60px;"></span>
+			</span>
+		</div>
 		<div id="dishComment"></div>
 		<br>
 		<form id="commentForm" action="includes/updatecomment.php" method="POST">
@@ -221,6 +249,8 @@
 <div data-role="page" id="makingPage">
 	<div data-role="header">
 		<h1>View dishes which are making</h1>
+		<a href="#indexPage" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-notext">Home</a>
+		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-notext">Back</a>
 	</div>
 	<div data-role="main" class="ui-content">
 		<ul id="showMaking" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>

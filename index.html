@@ -95,11 +95,25 @@
 		<img src="images/main_2.jpg" alt="Just Try" style="max-width:100%">
 	</div>
 	<div data-role="main" class="ui-content">
-		<p>Chef Recommend</p>
-		<div style="display:inline-block">
-			<img id="indexDish1" src="images/menu/dish1.jpg" style="max-width:100%;display:none" alt="dish1" data-role="none">
+		<div data-role="navbar">
+      		<ul>
+        		<li><a href="#" class="ui-btn-active">Recommend</a></li>
+        		<li><a href="#">New</a></li>
+        		<li><a href="#">Bargain Price</a></li>
+      		</ul>
+    	</div>
+		<div style="display:inline-block;position:relative">
+			<a href="#menuPage" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
+			<img id="indexDish1" data-transition="slide" src="images/menu/dish1.jpg" style="max-width:100%;display:none" alt="dish1" data-role="none">
 			<img id="indexDish2" src="images/menu/dish2.jpg" style="max-width:100%;display:none" alt="dish2" data-role="none">
 			<img id="indexDish3" src="images/menu/dish3.jpg" style="max-width:100%;display:none" alt="dish3" data-role="none">
+			
+			<div style="position:absolute;bottom:0px;right:1em;height:4em;">
+				<span style="float:right;font-size:4em;height:1em;">&bull;</span>
+				<span style="float:right;font-size:4em;height:1em;">&bull;</span>
+				<span style="float:right;font-size:4em;height:1em;">&bull;</span>
+			</div>
+			</a>
 		</div>
 	</div>
 	<div data-role="footer" data-position="fixed">
@@ -145,15 +159,15 @@
 	<div data-role="main" class="ui-content">
 		<div id="orderedList" data-role="collapsible" data-collapsed="false">
 			<h1>You have ordered:</h1>
-			<ul id="showOrdered" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+			<ul id="showOrdered" class='ui-listview ui-corner-all ui-shadow'></ul>
 		</div>
 		<div id="selectedList" data-role="collapsible" data-collapsed="false">
 			<h1>You have selected:</h1>
-			<ul id="showSelected" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+			<ul id="showSelected" class='ui-listview ui-corner-all ui-shadow'></ul>
 		</div>
 		<div id="cancelList" data-role="collapsible" data-collapsed="false">
 			<h1>You have abandoned:</h1>
-			<ul id="showCancel" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+			<ul id="showCancel" class='ui-listview ui-corner-all ui-shadow'></ul>
 		</div>
 		<a href="#" class="ui-btn" id="totalPrice"></a>
 		<br>
@@ -207,7 +221,10 @@
 				<span class="star-front" style="width:60px;"></span>
 			</span>
 		</div>
-		<div id="dishComment"></div>
+		<div id="dishComment" data-role="collapsible" data-collapsed="false">
+			<h1>Comments:</h1>
+			<ul id="showComment" class='ui-listview ui-corner-all ui-shadow'></ul>
+		</div>
 		<br>
 		<form id="commentForm" action="includes/updatecomment.php" method="POST">
 			

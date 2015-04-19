@@ -9,7 +9,7 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
     $("#dishInfo").append("<p>Composition: " + dishInfo[id].composition + "</p>");
     $("#dishInfo").append("<p>Price: "       + dishInfo[id].price       + "</p>");
 	//$("#dishStar").text("");
-	$("#dishComment").text("");
+	$("#showComment").text("");
 	/*$.post("includes/readdish.php",
 	{
 		DishID: storeObject.DishID
@@ -38,7 +38,7 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
 		$.each(JSON.parse(data), function(i, field){
         	//$("#dishComment").append("<p>" + field.Time    + "</p>");
         	//$("#dishComment").append("<p>" + field.Comment + "</p>");
-        	$("#dishComment").append(listComment(field.Time, field.Comment));
+        	$("#showComment").append(listComment(field.Time, field.Comment));
         });
 	});
 });
@@ -62,7 +62,6 @@ $(document).on('pageinit', "#singlePage", function () {
       		data: form.serialize()
     	}).done(function() {
       		// Optionally alert the user of success here...
-      		$("#dishComment").append(listComment(curTime(), $("#dishCommentInput").val()));
       		$("#commentForm").trigger("reset");
       		$('#dialogComment').popup('open', {
       			history: false,
@@ -76,9 +75,10 @@ $(document).on('pageinit', "#singlePage", function () {
       				transition: "slidedown"
       			});
       		}, 800);
+      		$("#showComment").append(listComment(curTime(), $("#dishCommentInput").val()));
     	}).fail(function() {
       		// Optionally alert the user of an error here...
-      		alert("Submission Comment Form Fail");
+      		alert("Submit Comment Form Fail");
     	});
     	//event.stopPropagation();
 		event.preventDefault(); // Prevent the form from submitting via the browser.
@@ -86,7 +86,11 @@ $(document).on('pageinit', "#singlePage", function () {
 });
 
 function listComment(time, comment) {
-	var list = "<p>"  + time    + "</p>"
-			 + "<h2>" + comment + "</h2>";
+	var list = "<li>"
+			+    "<a class='ui-btn'>"
+			+      "<p>"  + time    + "</p>"
+			+      "<h2>" + comment + "</h2>"
+			+    "</a>"
+			+  "</li>";
 	return list;
 }

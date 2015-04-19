@@ -2,6 +2,7 @@
 
 $selected = json_decode($_POST["Dishes"], true);
 $tablenum = $_POST["table"];
+date_default_timezone_set("Europe/London");
 
 include_once "DBConnect.php";
 
@@ -19,6 +20,7 @@ if (strlen($ordernum) == 16) {
 	$ordered = 0;
 }
 
+// needs to decide which date to use, in php, or in mysql
 if ($date == date("Ymd")) {
 	$ordered = $ordered + 1;
 } else {

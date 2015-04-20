@@ -27,8 +27,14 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
 		DishID: storeObject.DishID
 	},
 	function(data) {
+		var starStatus = JSON.parse(data);
+		var id = storeObject.DishID;
+		dishInfo[id].star = starStatus.Star;
+		dishInfo[id].starnum = starStatus.Num;
+		//alert(starStatus.Star + starStatus.Num);
 		//$("#dishStar").append("<p>Star: " + data + "</p>");
-		$("#dishStar .star-front").attr("style", "width:" + parseInt(12*parseFloat(data)) + "px");
+		$("#dishStar .star-front").attr("style", "width:" + parseInt(12*parseFloat(starStatus.Star)) + "px");
+		$("#dishStar #star-num").text(starStatus.Num);
 	});
 	$.post("includes/readdishcomment.php",
 	{

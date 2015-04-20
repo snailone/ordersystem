@@ -97,14 +97,14 @@
 	<div data-role="main" class="ui-content">
 		<div data-role="navbar">
       		<ul>
+      			<li><a href="#">New</a></li>
         		<li><a href="#" class="ui-btn-active">Recommend</a></li>
-        		<li><a href="#">New</a></li>
         		<li><a href="#">Bargain Price</a></li>
       		</ul>
     	</div>
 		<div style="display:inline-block;position:relative">
-			<a href="#menuPage" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
-			<img id="indexDish1" data-transition="slide" src="images/menu/dish1.jpg" style="max-width:100%;display:none" alt="dish1" data-role="none">
+			<a href="#" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
+			<img id="indexDish1" src="images/menu/dish1.jpg" style="max-width:100%;display:none" alt="dish1" data-role="none">
 			<img id="indexDish2" src="images/menu/dish2.jpg" style="max-width:100%;display:none" alt="dish2" data-role="none">
 			<img id="indexDish3" src="images/menu/dish3.jpg" style="max-width:100%;display:none" alt="dish3" data-role="none">
 			
@@ -216,10 +216,12 @@
 	<div data-role="main" class="ui-content">
 		<div id="dishInfo"></div>
 		<div id="dishStar">
-			Star: 
-			<span class="star-background">
-				<span class="star-front" style="width:60px;"></span>
-			</span>
+			<p>
+				<span class="star-background">
+					<span class="star-front" style="width:60px;"></span>
+				</span>
+			</p>
+			<p><span id="star-num"></span> people gave rate</p>
 		</div>
 		<div id="dishComment" data-role="collapsible" data-collapsed="false">
 			<h1>Comments:</h1>

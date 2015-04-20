@@ -53,7 +53,11 @@ $(document).on("pageinit", "#orderPage", function() {
 				$("#dishMinus" + id).hide();
 				$("#dishNum"   + id).hide();
 				$("#dish" + id).removeClass("ui-btn-active");
-				orderedDishes[id] = + orderedDishes[id] + num;
+				if (typeof orderedDishes[id] == "undefined") {
+					orderedDishes[id] = num;
+				} else {
+					orderedDishes[id] = + orderedDishes[id] + num;
+				}
 				dishInfo[id].changeNum("zero");
 			});
 			selectedDishes = {};

@@ -50,24 +50,20 @@ function dishInfoCollect (id, name, type, price, composition) {
     this.composition = composition;
     // dish number which is selected
     this.num = 0;
+    this.star = 0;
+    this.starnum = 0;
 }
 (function() {
-    this.getName = function() {
-        return this.name;
-    };
-    this.getPrice = function() {
-        return this.price;
-    };
     // mode = "plus", "minus", "zero"
     this.changeNum = function(mode) {
-        if (mode = "plus") {
+        if (mode == "plus") {
             this.num++;
-        } else if (mode = "minus") {
+        } else if (mode == "minus") {
             this.num--;
             if (this.num<=0) {
                 this.num = 0;
             }
-        } else if (mode = "zero") {
+        } else if (mode == "zero") {
             this.num = 0;
         } else {
             alert("wrong!");

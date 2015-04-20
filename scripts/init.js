@@ -1,6 +1,5 @@
 $(document).on("pagebeforecreate", "#indexPage", function() {
 	$.getJSON("includes/readmenu.php", function(data){
-
 		$.each(data, function(i, field){
 			var id = field.DishID;
 			dishInfo[id] = new dishInfoCollect(field.DishID, field.DishName, field.DishType, field.Price, field.DishComposition);

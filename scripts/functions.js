@@ -42,16 +42,31 @@ function curTime() {
     return time;
 }
 
-function dishInfoCollect (id, name, type, price, composition) {
+function dishInfoCollect (id, name, type, price, composition, status, bargain, star, starnum) {
     this.id = id;
     this.name = name;
     this.type = type;
-    this.price = price;
+    this.price = parseFloat(price);
     this.composition = composition;
     // dish number which is selected
     this.num = 0;
-    this.star = 0;
-    this.starnum = 0;
+    
+    this.bargain = parseFloat(bargain);
+    this.star = parseFloat(star);
+    this.starnum = parseInt(starnum);
+
+    this.newDish = parseInt(status)&1;
+    this.recommend = (parseInt(status)&2)/2;
+    this.offer = (parseInt(status)&4)/4;
+    if (this.newDish != 1 && this.newDish != 0) {
+        alert("newDish system wrong!! " + this.newDish);
+    }
+    if (this.recommend != 1 && this.recommend != 0) {
+        alert("Recommend system wrong!! " + this.recommend);
+    }
+    if (this.offer != 1 && this.offer != 0) {
+        alert("Special Offer system wrong!! " + this.offer);
+    }
 }
 (function() {
     // mode = "plus", "minus", "zero"
@@ -88,8 +103,14 @@ function dishInfoCollect (id, name, type, price, composition) {
             list = "<div id='dishBlock" + this.id + "'>"
                 +   "<a id='dish" + this.id + "' href='#singlePage' class='ui-btn ui-mini' style='text-align:left; margin:0 0 0 0;' >"
                 +     "<img src='images/menu/dish"+this.id+".jpg' alt='dish' style='max-width:100%'>"
-                +     "<h2>"+ this.name + "</h2>"
-                +     "<p>Price: &pound;" + this.price + " <span style='color:red' id='dishNum" + this.id + "'></span></p>"
+                +     "<div style='float:left;'>"
+                +       "<h2>"+ this.name + "</h2>"
+                +       "<p>Price: &pound;" + this.price + " <span style='color:red' id='dishNum" + this.id + "'></span></p>"
+                +     "</div>"
+                +     "<div style='float:right;text-align:right;'>"
+                +       "<span class='star-background' style='text-align:left'><span class='star-front' style='width:"+parseInt(this.star*12)+"px'></span></span><br>"
+                +       this.starnum + " people rated"
+                +     "</div>"
                 +   "</a>"
                 +   "<div style='text-align:right'>"
                 +     "<a id='dishMinus" + this.id + "' href='#' class='ui-btn ui-mini ui-btn-inline ui-btn-icon-notext ui-icon-minus ui-corner-all'>Minus</a>"

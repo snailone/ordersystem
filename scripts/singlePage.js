@@ -22,6 +22,7 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
         	$("#dishInfo").append("<p>Price: "       + field.Price           + "</p>");
         });
 	});*/
+	/*
 	$.post("includes/readdishstar.php",
 	{
 		DishID: storeObject.DishID
@@ -36,6 +37,9 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
 		$("#dishStar .star-front").attr("style", "width:" + parseInt(12*parseFloat(starStatus.Star)) + "px");
 		$("#dishStar #star-num").text(starStatus.Num);
 	});
+	*/
+	$("#dishStar .star-front").attr("style", "width:" + parseInt(12*parseFloat(dishInfo[id].star)) + "px");
+	$("#dishStar #star-num").text(parseFloat(dishInfo[id].star).toFixed(2) + ", " + dishInfo[id].starnum);
 	$.post("includes/readdishcomment.php",
 	{
 		DishID: storeObject.DishID
@@ -68,7 +72,19 @@ $(document).on('pageinit', "#singlePage", function () {
       		data: form.serialize()
     	}).done(function() {
       		// Optionally alert the user of success here...
-      		$("#commentForm").trigger("reset");
+      		
+      		var id = storeObject.DishID;
+      		var star = dishInfo[id].star;
+      		var starnum = dishInfo[id].starnum;
+      		var curStar = parseFloat($("#commentForm select").val());
+      		
+      		dishInfo[id].star = (star*starnum + curStar)/(+starnum+1);
+      		dishInfo[id].starnum++;
+
+      		$("#dishStar .star-front").attr("style", "width:" + parseInt(12*parseFloat(dishInfo[id].star)) + "px");
+      		$("#dishStar #star-num").text(dishInfo[id].star.toFixed(2) + ", " + dishInfo[id].starnum);
+      		$("#showComment").append(listComment(curTime(), $("#dishCommentInput").val()));
+
       		$('#dialogComment').popup('open', {
       			history: false,
       			transition: "slideup",
@@ -81,7 +97,8 @@ $(document).on('pageinit', "#singlePage", function () {
       				transition: "slidedown"
       			});
       		}, 800);
-      		$("#showComment").append(listComment(curTime(), $("#dishCommentInput").val()));
+      		//all the input content in this form would be clear
+      		$("#commentForm").trigger("reset");
     	}).fail(function() {
       		// Optionally alert the user of an error here...
       		alert("Submit Comment Form Fail");

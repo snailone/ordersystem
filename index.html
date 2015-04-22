@@ -59,6 +59,10 @@
 		background-color: #4da6ff;
 	}
 
+	#menuPage #menuPanel.ui-panel {
+    	width: 10em;
+	}
+
 	.star-background, .star-background .star-front {
 		display: inline-block;
 		height: 12px;
@@ -135,7 +139,7 @@
 		<a href="#indexPage" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-notext">Home</a>
 		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-notext">Back</a>
 	</div>
-	<div data-role="panel" id="menuPanel" data-swipe-close="false">
+	<div data-role="panel" id="menuPanel" data-swipe-close="false" data-position-fixed="true">
 		<ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
 	</div>
 	<div data-role="main" class="ui-content">

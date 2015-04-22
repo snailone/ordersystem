@@ -10,6 +10,15 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
 			} else {
 				dishType[dishInfo[id].type].push(id);
 			}
+			if(dishInfo[id].newDish == 1) {
+				dishSpecial.newDish.push(id);
+			}
+			if (dishInfo[id].recommend == 1) {
+				dishSpecial.recommend.push(id);
+			}
+			if (dishInfo[id].offer == 1) {
+				dishSpecial.offer.push(id);
+			}
 			$("#showMenu").append(dishInfo[id].getElement("menu"));
 			$("#dishBlock" + id).hide();
 			$("#dishMinus" + id).hide();
@@ -147,12 +156,16 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
 			
 			storeObject.totalPrice = + storeObject.totalPrice + dishInfo[id].price * dishInfo[id].num;
         });
+		console.log(dishSpecial.newDish);
+		console.log(dishSpecial.recommend);
+		console.log(dishSpecial.offer);
 
 		$("#totalPrice").text("Total Price: " + storeObject.totalPrice.toFixed(2));
 
 		$.each(dishType, function(type, dishes) {
-    		$("#showType").append("<li><a class='ui-btn' id='dishType" + type + "'>" + type + "</a></li>");
+    		$("#showType").append("<li><a href='#menuPage' data-rel='close' class='ui-btn' id='dishType" + type + "'>" + type + "</a></li>");
         	$("#dishType" + type).click(function() {
+        		$("#typeTitle").text(type);
         		$.each(dishInfo, function(id, eachDish){
         			$("#dishBlock" + id).hide();
         		});
@@ -180,5 +193,51 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
         		});
         	});
     	});
+		$.each(dishSpecial.newDish, function(i, num){
+			$("#newBlock").append('<img src="images/menu/dish'+num+'.jpg" style="max-width:100%;display:none" alt="dish'+num+'" data-role="none">');
+			$("#newBlock div").append('<span style="font-size:4em;height:1em;color:gray">&bull;</span>');
+		});
+		$.each(dishSpecial.recommend, function(i, num){
+			$("#recommendBlock").append('<img src="images/menu/dish'+num+'.jpg" style="max-width:100%;display:none" alt="dish'+num+'" data-role="none">');
+			$("#recommendBlock div").append('<span style="font-size:4em;height:1em;color:gray">&bull;</span>');
+		});
+		$.each(dishSpecial.offer, function(i, num){
+			$("#bargainBlock").append('<img src="images/menu/dish'+num+'.jpg" style="max-width:100%;display:none" alt="dish'+num+'" data-role="none">');
+			$("#bargainBlock div").append('<span style="font-size:4em;height:1em;color:gray">&bull;</span>');
+		});
+		$("#newBlock").show();
+		$("#recommendBlock").hide();
+		$("#bargainBlock").hide();
+		$("#newButton").click(function() {
+			$("#newBlock").show();
+			$("#recommendBlock").hide();
+			$("#bargainBlock").hide();
+		});
+		$("#recommendButton").click(function() {
+			$("#newBlock").hide();
+			$("#recommendBlock").show();
+			$("#bargainBlock").hide();
+		});
+		$("#bargainButton").click(function() {
+			$("#newBlock").hide();
+			$("#recommendBlock").hide();
+			$("#bargainBlock").show();
+		});
+		loopPictures(0, dishSpecial.newDish.length, "#newBlock");
+		loopPictures(0, dishSpecial.recommend.length, "#recommendBlock");
+		loopPictures(0, dishSpecial.offer.length, "#bargainBlock");
 	});
 });
+
+function loopPictures(i, num, selector) {
+	selector = selector;
+	$(selector).children("img").eq(i).fadeOut(1000).promise().done(function() {
+		$(selector + " div").children("span").eq(i).css("color","gray");
+		i = i==(+num-1) ? 0 : i+1;
+		$(selector).children("img").eq(i).fadeIn(1000);
+		$(selector + " div").children("span").eq(i).css("color","green");
+	});
+	setTimeout( function() {
+		loopPictures(i, num, selector);
+	}, 5000);
+}

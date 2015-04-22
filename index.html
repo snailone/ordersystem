@@ -92,29 +92,35 @@
 	<div data-role="main" class="ui-content">
 		<div data-role="navbar">
       		<ul>
-      			<li><a href="#">New</a></li>
-        		<li><a href="#" class="ui-btn-active">Recommend</a></li>
-        		<li><a href="#">Bargain Price</a></li>
+      			<li><a id="newButton" href="#" class="ui-btn-active">New</a></li>
+        		<li><a id="recommendButton" href="#">Recommend</a></li>
+        		<li><a id="bargainButton" href="#">Bargain Price</a></li>
       		</ul>
     	</div>
 		<div style="display:inline-block;position:relative">
-			<a href="#" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
-			<img id="indexDish1" src="images/menu/dish1.jpg" style="max-width:100%;display:none" alt="dish1" data-role="none">
-			<img id="indexDish2" src="images/menu/dish2.jpg" style="max-width:100%;display:none" alt="dish2" data-role="none">
-			<img id="indexDish3" src="images/menu/dish3.jpg" style="max-width:100%;display:none" alt="dish3" data-role="none">
+			<a id="newBlock" href="#" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
+				<!--img id="indexDish1" src="images/menu/dish1.jpg" style="max-width:100%;display:none" alt="dish1" data-role="none">
+				<img id="indexDish2" src="images/menu/dish2.jpg" style="max-width:100%;display:none" alt="dish2" data-role="none">
+				<img id="indexDish3" src="images/menu/dish3.jpg" style="max-width:100%;display:none" alt="dish3" data-role="none"-->
 			
-			<div style="position:absolute;bottom:0px;right:1em;height:4em;">
-				<span style="float:right;font-size:4em;height:1em;">&bull;</span>
-				<span style="float:right;font-size:4em;height:1em;">&bull;</span>
-				<span style="float:right;font-size:4em;height:1em;">&bull;</span>
-			</div>
+				<div style="position:absolute;bottom:0px;right:1em;height:4em;z-index:1">
+					<!--span style="float:right;font-size:4em;height:1em;">&bull;</span>
+					<span style="float:right;font-size:4em;height:1em;">&bull;</span>
+					<span style="float:right;font-size:4em;height:1em;">&bull;</span-->
+				</div>
+			</a>
+			<a id="recommendBlock" href="#" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
+				<div style="position:absolute;bottom:0px;right:1em;height:4em;z-index:1"></div>
+			</a>
+			<a id="bargainBlock" href="#" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
+				<div style="position:absolute;bottom:0px;right:1em;height:4em;z-index:1"></div>
 			</a>
 		</div>
 	</div>
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
       		<ul>
-        		<li><a id="indexFooter1" href="#menuPage" data-icon="bars">Menu</a></li>
+        		<li><a id="indexFooter1" href="#menuPage" data-icon="bars" data-transition="slide">Menu</a></li>
         		<li><a href="#orderPage" data-icon="check">Order</a></li>
         		<li><a href="#" data-icon="comment">Activities</a></li>
         		<li><a href="#" data-icon="gear">Settings</a></li>
@@ -129,14 +135,18 @@
 		<a href="#indexPage" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-notext">Home</a>
 		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-notext">Back</a>
 	</div>
+	<div data-role="panel" id="menuPanel" data-swipe-close="false">
+		<ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+	</div>
 	<div data-role="main" class="ui-content">
-		<ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow' style="float:left; width:20%"></ul>
-		<div id="showMenu" class='ui-grid-a' style="float:right; width:80%"></div>
+		<div id="showMenu" class='ui-grid-a'>
+			<a id="typeTitle" href="#menuPanel" class="ui-btn"></a>
+		</div>
 	</div>
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
       		<ul>
-        		<li><a href="#" data-icon="bars" class="ui-btn-active ui-state-persist">Menu</a></li>
+        		<li><a href="#" data-icon="bars" class="ui-btn-active ui-state-persist" data-transition="slide">Menu</a></li>
         		<li><a href="#orderPage" data-icon="check">Order</a></li>
         		<li><a href="#" data-icon="comment">Activities</a></li>
         		<li><a href="#" data-icon="gear">Settings</a></li>

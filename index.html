@@ -63,6 +63,14 @@
     	width: 10em;
 	}
 
+	#menuPage .ui-panel-animate.ui-panel-page-content-position-left.ui-panel-page-content-display-reveal {
+    	left: 0;
+    	right: 0;
+    	-webkit-transform: translate3d(10em,0,0);
+    	-moz-transform: translate3d(10em,0,0);
+    	transform: translate3d(10em,0,0);
+	}
+
 	.star-background, .star-background .star-front {
 		display: inline-block;
 		height: 12px;
@@ -139,10 +147,7 @@
 		<a href="#indexPage" class="ui-btn ui-btn-left ui-icon-home ui-btn-icon-notext">Home</a>
 		<a href="#" class="ui-btn ui-btn-right ui-icon-back ui-btn-icon-notext">Back</a>
 	</div>
-	<div data-role="panel" id="menuPanel" data-swipe-close="false" data-position-fixed="true">
-		<ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
-	</div>
-	<div data-role="main" class="ui-content">
+	<div data-role="content" class="ui-content">
 		<div id="showMenu" class='ui-grid-a'>
 			<a id="typeTitle" href="#menuPanel" class="ui-btn"></a>
 		</div>
@@ -156,6 +161,9 @@
         		<li><a href="#" data-icon="gear">Settings</a></li>
       		</ul>
     	</div>
+	</div>
+	<div data-role="panel" id="menuPanel" data-swipe-close="false" data-position-fixed="true">
+		<ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
 	</div>
 </div>
 

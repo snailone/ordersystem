@@ -110,7 +110,7 @@
       		</ul>
     	</div>
 		<div style="display:inline-block;position:relative">
-			<a id="newBlock" href="#" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
+			<a id="newBlock" href="#menuPage" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
 				<!--img id="indexDish1" src="images/menu/dish1.jpg" style="max-width:100%;display:none" alt="dish1" data-role="none">
 				<img id="indexDish2" src="images/menu/dish2.jpg" style="max-width:100%;display:none" alt="dish2" data-role="none">
 				<img id="indexDish3" src="images/menu/dish3.jpg" style="max-width:100%;display:none" alt="dish3" data-role="none"-->
@@ -121,10 +121,10 @@
 					<span style="float:right;font-size:4em;height:1em;">&bull;</span-->
 				</div>
 			</a>
-			<a id="recommendBlock" href="#" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
+			<a id="recommendBlock" href="#menuPage" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
 				<div style="position:absolute;bottom:0px;right:1em;height:4em;z-index:1"></div>
 			</a>
-			<a id="bargainBlock" href="#" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
+			<a id="bargainBlock" href="#menuPage" class="ui-btn" data-inset="false" style="margin:0 0 0 0;padding:0 0 0 0;border-width:0">
 				<div style="position:absolute;bottom:0px;right:1em;height:4em;z-index:1"></div>
 			</a>
 		</div>
@@ -149,7 +149,7 @@
 	</div>
 	<div data-role="content" class="ui-content">
 		<div id="showMenu" class='ui-grid-a'>
-			<a id="typeTitle" href="#menuPanel" class="ui-btn"></a>
+			<a id="typeTitle" href="#menuPanel" class="ui-btn">All</a>
 		</div>
 	</div>
 	<div data-role="footer" data-position="fixed">
@@ -162,8 +162,18 @@
       		</ul>
     	</div>
 	</div>
-	<div data-role="panel" id="menuPanel" data-swipe-close="false" data-position-fixed="true">
-		<ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'></ul>
+	<div data-role="panel" id="menuPanel" data-position-fixed="true">
+		<ul id="showType" data-role="listview" class="ui-corner-all ui-shadow">
+			<li data-role="list-divider">Special</li>
+			<li><a id="dishType-new" data-rel='close' class="ui-btn">New</a></li>
+			<li><a id="dishType-recommend" data-rel='close' class="ui-btn">Recommend</a></li>
+			<li><a id="dishType-offer" data-rel='close' class="ui-btn">Offer</a></li>
+			<li data-role="list-divider">Type</li>
+		</ul>
+		
+		<!--ul id="showType" class='ui-listview ui-listview-inset ui-corner-all ui-shadow'>
+			
+		</ul-->
 	</div>
 </div>
 

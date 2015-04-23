@@ -1,5 +1,6 @@
 $(document).on("pagebeforecreate", "#indexPage", function() {
 	$.getJSON("includes/readmenu.php", function(data){
+		var count = 0;
 		$.each(data, function(id, field){
 			if (id != field.DishID) {
 				alert("something wrong!!");
@@ -162,9 +163,13 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
 
 		$("#totalPrice").text("Total Price: " + storeObject.totalPrice.toFixed(2));
 
+		count = 0;
 		$.each(dishType, function(type, dishes) {
     		$("#showType").append("<li><a href='#menuPage' data-rel='close' class='ui-btn' id='dishType" + type + "'>" + type + "</a></li>");
         	$("#dishType" + type).click(function() {
+        		$("#dishType" + storeObject.prevType).css("background-color","LightGray");
+        		$("#dishType" + type).css("background-color","yellow");
+        		storeObject.prevType = type;
         		$("#typeTitle").text(type);
         		$.each(dishInfo, function(id, eachDish){
         			$("#dishBlock" + id).hide();
@@ -176,22 +181,23 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
         			} else {
         				dishInfo[num].position("right");
         			}
-        			// the code below might be useless, since all the initial states are stored already
-        			// use ui-btn-active as the selected state is not a good idea.
-        			// click the link will clear ui-btn-active
-					/*if (dishInfo[num].num == 0) {
-						$("#dishMinus" + dishInfo[num].id).hide();
-						$("#dish"      + dishInfo[num].id).removeClass("ui-btn-active");
-						$("#dishNum"   + dishInfo[num].id).hide();
-					} else {
-						$("#dishMinus" + dishInfo[num].id).show();
-						$("#dish"      + dishInfo[num].id).addClass("ui-btn-active");
-						$("#dishNum"   + dishInfo[num].id).show();
-						$("#dishNum"   + dishInfo[num].id).html("&times; " + dishInfo[num].num);
-					}*/
-					////////////////
         		});
         	});
+        	if (count == 0) {
+        		$("#typeTitle").text(type);
+        		$.each(dishInfo, function(id, eachDish){
+        			$("#dishBlock" + id).hide();
+        		});
+        		$.each(dishes, function(i, num) {
+        			$("#dishBlock" + num).show();
+        			if (i%2 == 0) {
+        				dishInfo[num].position("left");
+        			} else {
+        				dishInfo[num].position("right");
+        			}
+        		});
+        	}
+        	count++;
     	});
 		$.each(dishSpecial.newDish, function(i, num){
 			$("#newBlock").append('<img src="images/menu/dish'+num+'.jpg" style="max-width:100%;display:none" alt="dish'+num+'" data-role="none">');
@@ -226,6 +232,92 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
 		loopPictures(0, dishSpecial.newDish.length, "#newBlock");
 		loopPictures(0, dishSpecial.recommend.length, "#recommendBlock");
 		loopPictures(0, dishSpecial.offer.length, "#bargainBlock");
+
+		$("#newBlock").click(function () {
+			$("#typeTitle").text("New");
+        	$.each(dishInfo, function(id, eachDish){
+        		$("#dishBlock" + id).hide();
+        	});
+        	$.each(dishSpecial.newDish, function(i, num) {
+        		$("#dishBlock" + num).show();
+        		if (i%2 == 0) {
+        			dishInfo[num].position("left");
+        		} else {
+        			dishInfo[num].position("right");
+        		}
+        	});
+		});
+		$("#recommendBlock").click(function () {
+			$("#typeTitle").text("Recommend");
+        	$.each(dishInfo, function(id, eachDish){
+        		$("#dishBlock" + id).hide();
+        	});
+        	$.each(dishSpecial.recommend, function(i, num) {
+        		$("#dishBlock" + num).show();
+        		if (i%2 == 0) {
+        			dishInfo[num].position("left");
+        		} else {
+        			dishInfo[num].position("right");
+        		}
+        	});
+		});
+		$("#bargainBlock").click(function () {
+			$("#typeTitle").text("Bargain Price");
+        	$.each(dishInfo, function(id, eachDish){
+        		$("#dishBlock" + id).hide();
+        	});
+        	$.each(dishSpecial.offer, function(i, num) {
+        		$("#dishBlock" + num).show();
+        		if (i%2 == 0) {
+        			dishInfo[num].position("left");
+        		} else {
+        			dishInfo[num].position("right");
+        		}
+        	});
+		});
+
+		$("#dishType-new").click(function () {
+			$("#typeTitle").text("New");
+        	$.each(dishInfo, function(id, eachDish){
+        		$("#dishBlock" + id).hide();
+        	});
+        	$.each(dishSpecial.newDish, function(i, num) {
+        		$("#dishBlock" + num).show();
+        		if (i%2 == 0) {
+        			dishInfo[num].position("left");
+        		} else {
+        			dishInfo[num].position("right");
+        		}
+        	});
+		});
+		$("#dishType-recommend").click(function () {
+			$("#typeTitle").text("Recommend");
+        	$.each(dishInfo, function(id, eachDish){
+        		$("#dishBlock" + id).hide();
+        	});
+        	$.each(dishSpecial.recommend, function(i, num) {
+        		$("#dishBlock" + num).show();
+        		if (i%2 == 0) {
+        			dishInfo[num].position("left");
+        		} else {
+        			dishInfo[num].position("right");
+        		}
+        	});
+		});
+		$("#dishType-offer").click(function () {
+			$("#typeTitle").text("Bargain Price");
+        	$.each(dishInfo, function(id, eachDish){
+        		$("#dishBlock" + id).hide();
+        	});
+        	$.each(dishSpecial.offer, function(i, num) {
+        		$("#dishBlock" + num).show();
+        		if (i%2 == 0) {
+        			dishInfo[num].position("left");
+        		} else {
+        			dishInfo[num].position("right");
+        		}
+        	});
+		});
 	});
 });
 

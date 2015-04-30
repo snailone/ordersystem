@@ -1,8 +1,10 @@
 <?php 
 include_once "DBConnect.php";
 $dishid = $_POST["DishID"];
+//$page = $_POST["page"];
+$page = 0;
 //$dishid = 1;
-$sql = "select DishID, Time, Comment from dishcomment where DishID=" . $dishid;
+$sql = "select DishID, Time, Comment from dishcomment where DishID=" . $dishid . " order by Time desc limit 2 offset " . 2*$page;
 $result = $conn->query($sql);
 
 $outp = "";

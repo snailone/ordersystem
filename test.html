@@ -1,0 +1,22 @@
+<script>
+var isPalindrome = function(s) {
+    if (s==="") return true;
+    sArr = [];
+    for (var i=0; i<s.length; i++) {
+        if (s.substr(i,1).search(/\w/i)===0) {
+            var temp = /\w/i.exec(s.substr(i,1));
+            sArr.push(temp[0]);
+        }
+    }
+    console.log(sArr);
+    for (i=0; i<sArr.length; i++) {
+        if (sArr[i]!==sArr[sArr.length-i-1]) {
+            return false;
+        }
+    }
+    return true;
+};
+
+alert(isPalindrome("aA"));
+
+</script>

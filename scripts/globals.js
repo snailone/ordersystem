@@ -2,7 +2,8 @@ var storeObject = {
 	DishID: null,
 	totalPrice: 0,
 	prevPage: null,
-	prevType: ""
+	prevType: "",
+	curStar: 0
 };
 
 var dishInfo = {};

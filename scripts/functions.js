@@ -109,7 +109,7 @@ function dishInfoCollect (id, name, type, price, composition, status, bargain, s
                 +     "</div>"
                 +     "<div style='float:right;text-align:right;'>"
                 +       "<span class='star-background' style='text-align:left'><span class='star-front' style='width:"+parseInt(this.star*12)+"px'></span></span><br>"
-                +       this.starnum + " people rated"
+                +       "<span class='star-num'>" + this.starnum + "</span> people rated"
                 +     "</div>"
                 +   "</a>"
                 +   "<div style='text-align:right'>"

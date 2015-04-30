@@ -38,18 +38,46 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
 		$("#dishStar #star-num").text(starStatus.Num);
 	});
 	*/
-	$("#dishStar .star-front").attr("style", "width:" + parseInt(12*parseFloat(dishInfo[id].star)) + "px");
+	$("#dishStar .star-front").css("width", parseInt(12*parseFloat(dishInfo[id].star)) + "px");
 	$("#dishStar #star-num").text(parseFloat(dishInfo[id].star).toFixed(2) + ", " + dishInfo[id].starnum);
+
+	$("#dishStar .star-background").children("img").eq(0).on("vmousedown", function () {
+		$("#dishStar .star-front").css("width", "12px");
+		storeObject.curStar = 1;
+	});
+	$("#dishStar .star-background").children("img").eq(1).on("vmousedown", function () {
+		$("#dishStar .star-front").css("width", "24px");
+		storeObject.curStar = 2;
+	});
+	$("#dishStar .star-background").children("img").eq(2).on("vmousedown", function () {
+		$("#dishStar .star-front").css("width", "36px");
+		storeObject.curStar = 3;
+	});
+	$("#dishStar .star-background").children("img").eq(3).on("vmousedown", function () {
+		$("#dishStar .star-front").css("width", "48px");
+		storeObject.curStar = 4;
+	});
+	$("#dishStar .star-background").children("img").eq(4).on("vmousedown", function () {
+		$("#dishStar .star-front").css("width", "60px");
+		storeObject.curStar = 5;
+	});
+	$("#dishStar .star-background").children("img").on("vmouseup", function () {
+		$("#dishStar .star-front").css("width", parseInt(12*parseFloat(dishInfo[id].star)) + "px");
+		alert(storeObject.curStar);
+	});
+
 	$.post("includes/readdishcomment.php",
 	{
 		DishID: storeObject.DishID
 	},
 	function(data) {
-		$.each(JSON.parse(data), function(i, field){
-        	//$("#dishComment").append("<p>" + field.Time    + "</p>");
-        	//$("#dishComment").append("<p>" + field.Comment + "</p>");
-        	$("#showComment").append(listComment(field.Time, field.Comment));
-        });
+		if (data != "no comment") {
+			$.each(JSON.parse(data), function(i, field){
+        		//$("#dishComment").append("<p>" + field.Time    + "</p>");
+        		//$("#dishComment").append("<p>" + field.Comment + "</p>");
+        		$("#showComment").append(listComment(field.Time, field.Comment));
+        	});
+		}
 	});
 });
 
@@ -59,6 +87,11 @@ $(document).on('pageinit', "#singlePage", function () {
 	// to submit
 	// also have issue if I put this into a seperate file (outside "pagebeforeshow")
 	// because the following code won't execute (this page cannot load)
+	$("#dishCommentInput").removeClass("ui-corner-all");
+	$("#dishCommentInput").textinput({
+		autogrow: false
+	});
+	$("#dishCommentInput").autogrow();
 	$('#commentForm').submit(function(event) {
 		var form = $(this);
 		//if(this.beenSubmitted) {
@@ -80,8 +113,10 @@ $(document).on('pageinit', "#singlePage", function () {
       		
       		dishInfo[id].star = (star*starnum + curStar)/(+starnum+1);
       		dishInfo[id].starnum++;
+      		$("#dishBlock"+id+" .star-front").attr("style", "width:" + parseInt(12*parseFloat(dishInfo[id].star)) + "px");
+      		$("#dishBlock"+id+" .star-num").text(dishInfo[id].starnum);
 
-      		$("#dishStar .star-front").attr("style", "width:" + parseInt(12*parseFloat(dishInfo[id].star)) + "px");
+      		$("#dishStar .star-front").css("width", parseInt(12*parseFloat(dishInfo[id].star)) + "px");
       		$("#dishStar #star-num").text(dishInfo[id].star.toFixed(2) + ", " + dishInfo[id].starnum);
       		$("#showComment").append(listComment(curTime(), $("#dishCommentInput").val()));
 

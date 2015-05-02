@@ -52,9 +52,14 @@ function dishInfoCollect (id, name, type, price, composition, status, bargain, s
     this.num = 0;
     
     this.bargain = parseFloat(bargain);
-    this.star = parseFloat(star);
-    this.starnum = parseInt(starnum);
-
+    if (star!==null && starnum!==null) {
+        this.star = parseFloat(star);
+        this.starnum = parseInt(starnum);
+    } else {
+        this.star = 0;
+        this.starnum = 0;
+    }
+    
     this.newDish = parseInt(status)&1;
     this.recommend = (parseInt(status)&2)/2;
     this.offer = (parseInt(status)&4)/4;

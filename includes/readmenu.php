@@ -1,7 +1,7 @@
 <?php
 include_once "DBConnect.php";
 
-$sql = "select DishID, DishName, DishType, DishComposition, Price, Status, Bargain from dishlist";
+$sql = "select DishID, DishName, DishType, DishComposition, Price, Status, Bargain, Star, StarNum from dishlist";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -12,6 +12,7 @@ if ($result->num_rows > 0) {
 	echo "0 results";
 }
 
+/*
 $sql = "select DishID, avg(Star) as Star, count(*) as Num from dishcomment group by DishID";
 $result = $conn->query($sql);
 
@@ -26,6 +27,8 @@ foreach ($outp as $id => $value) {
 		$outp[$id] = array_merge($value, array("Star"=>"0", "Num"=>"0"));
 	}
 }
+
+*/
 
 $conn->close();
 

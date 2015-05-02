@@ -5,7 +5,7 @@ $(document).on("pagebeforecreate", "#indexPage", function() {
 			if (id != field.DishID) {
 				alert("something wrong!!");
 			}
-			dishInfo[id] = new dishInfoCollect(field.DishID, field.DishName, field.DishType, field.Price, field.DishComposition, field.Status, field.Bargain, field.Star, field.Num);
+			dishInfo[id] = new dishInfoCollect(field.DishID, field.DishName, field.DishType, field.Price, field.DishComposition, field.Status, field.Bargain, field.Star, field.StarNum);
 			if(typeof dishType[dishInfo[id].type] == "undefined") {
 				dishType[dishInfo[id].type] = [id];
 			} else {

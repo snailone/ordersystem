@@ -277,24 +277,26 @@
 					<img class="star-img" src="images/star_front.png" style="position:absolute;top:0;left:48px">
 				</span>
 			</p>
-			<p><span id="star-num"></span> people gave rate</p>
+			<p><span id="star-num"></span> ratings</p>
 		</div>
 		<div id="dishComment" data-role="collapsible" data-collapsed="false">
 			<h1>Comments:</h1>
 			<ul id="showComment" class='ui-listview ui-corner-all ui-shadow'></ul>
 		</div>
 		<br>
-		Select the score:
-
-			<!--select name="star">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-			</select>
-			<br-->
-
+		
+		<div id="starSelect" data-role="popup" data-dismissible="false" data-overlay-theme="b">
+        	<p>You've selected <span id="starScore"></span></p>
+        	<form id="starForm" action="includes/updatestar.php" method="POST">
+        		<input type="hidden" name="dishid">
+        		<input type="hidden" name="star">
+        		<input type="hidden" name="starnum">
+        		<div data-role="controlgroup" data-type="horizontal">
+        			<input type="submit" value="Confirm">
+        			<a href="#" class="ui-btn" data-rel="back">Cancel</a>
+        		</div>
+        	</form>
+    	</div>
 
 		<div id="dialogComment" data-role="popup" data-transition="fade" data-dismissible="false">
         	Submit Successful
@@ -302,23 +304,13 @@
 	</div>
 	<div data-role="footer" data-position="fixed">
 		<form id="commentForm" action="includes/updatecomment.php" method="POST">
-			
-
-
-			
 			<input id="commentFormDish" type="hidden" name="dishid">
-			<!--div class="ui-field-contain"-->
-			<!--label for="dishCommentInput">Leave your comment:</label-->
 			<table><tr>
 			<td style="vertical-align:bottom;width:100%">
 			<textarea id="dishCommentInput" name="comment" placeholder="Leave your comment..."></textarea>
 			</td>
 			<td style="vertical-align:bottom"><input id="commentSubmitButton" class="ui-block-b" type="submit" value="send"></td>
 			</tr></table>
-			<!--/div-->
-
-			
-			
 		</form>
 	</div>
 </div>

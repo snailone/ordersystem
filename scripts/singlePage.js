@@ -2,7 +2,10 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
 	var id = storeObject.DishID;
 	$("#singleDishImg").attr("src", "images/menu/dish" + id + ".jpg");
 	$("#singleDishImg").attr("alt", "dish" + id);
-	$("#commentFormDish").attr("value", id);
+	
+
+
+
 	$("#dishInfo").text("");
 	$("#dishInfo").append("<p>Name: "        + dishInfo[id].name        + "</p>");
     $("#dishInfo").append("<p>Type: "        + dishInfo[id].type        + "</p>");
@@ -63,7 +66,11 @@ $(document).on("pagebeforeshow", "#singlePage", function () {
 	});
 	$("#dishStar .star-background").children("img").on("vmouseup", function () {
 		$("#dishStar .star-front").css("width", parseInt(12*parseFloat(dishInfo[id].star)) + "px");
-		alert(storeObject.curStar);
+		$("#starSelect p span").text(storeObject.curStar);
+		$('#starSelect').popup('open', {
+			transition: "slideup",
+			positionTo: "#dishStar"
+		});
 	});
 
 	$.post("includes/readdishcomment.php",
@@ -92,8 +99,50 @@ $(document).on('pageinit', "#singlePage", function () {
 		autogrow: false
 	});
 	$("#dishCommentInput").autogrow();
+	$('#starForm').submit(function(event) {
+		var form = $(this);
+      	var id = storeObject.DishID;
+      	var star = dishInfo[id].star;
+      	var starnum = dishInfo[id].starnum;
+      	var curStar = storeObject.curStar;
+      		
+      	star = (star*starnum + curStar)/(+starnum+1);
+
+		$("#starForm").children("input").eq(0).attr("value", id);
+		$("#starForm").children("input").eq(1).attr("value", star);
+		$("#starForm").children("input").eq(2).attr("value", starnum+1);
+		$.ajax({
+      		type: form.attr('method'),
+      		url:  form.attr('action'),
+      		data: form.serialize()
+    	}).done(function() {
+      		// Optionally alert the user of success here...
+      		dishInfo[id].star = star;
+      		dishInfo[id].starnum++;
+
+      		$("#dishBlock"+id+" .star-front").attr("style", "width:" + parseInt(12*parseFloat(dishInfo[id].star)) + "px");
+      		$("#dishBlock"+id+" .star-num").text(dishInfo[id].starnum);
+
+      		$("#dishStar .star-front").css("width", parseInt(12*parseFloat(dishInfo[id].star)) + "px");
+      		$("#dishStar #star-num").text(dishInfo[id].star.toFixed(2) + ", " + dishInfo[id].starnum);
+      		$('#starSelect').popup('close', {
+      			history: false,
+      			transition: "slidedown"
+      		});
+
+      		//all the input content in this form would be clear
+      		$("#starForm").trigger("reset");
+
+    	}).fail(function() {
+      		// Optionally alert the user of an error here...
+      		alert("Submit Comment Form Fail");
+    	});
+    	//event.stopPropagation();
+		event.preventDefault(); // Prevent the form from submitting via the browser.
+	});
 	$('#commentForm').submit(function(event) {
 		var form = $(this);
+		$("#commentForm").children("input").eq(0).attr("value", storeObject.DishID);
 		//if(this.beenSubmitted) {
 		//	return false;
 		//} else {
@@ -105,21 +154,7 @@ $(document).on('pageinit', "#singlePage", function () {
       		data: form.serialize()
     	}).done(function() {
       		// Optionally alert the user of success here...
-      		
-      		var id = storeObject.DishID;
-      		var star = dishInfo[id].star;
-      		var starnum = dishInfo[id].starnum;
-      		var curStar = parseFloat($("#commentForm select").val());
-      		
-      		dishInfo[id].star = (star*starnum + curStar)/(+starnum+1);
-      		dishInfo[id].starnum++;
-      		$("#dishBlock"+id+" .star-front").attr("style", "width:" + parseInt(12*parseFloat(dishInfo[id].star)) + "px");
-      		$("#dishBlock"+id+" .star-num").text(dishInfo[id].starnum);
-
-      		$("#dishStar .star-front").css("width", parseInt(12*parseFloat(dishInfo[id].star)) + "px");
-      		$("#dishStar #star-num").text(dishInfo[id].star.toFixed(2) + ", " + dishInfo[id].starnum);
       		$("#showComment").append(listComment(curTime(), $("#dishCommentInput").val()));
-
       		$('#dialogComment').popup('open', {
       			history: false,
       			transition: "slideup",
